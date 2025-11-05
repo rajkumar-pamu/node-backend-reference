@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: book-api
+  template:
+    metadata:
+      labels:
+        app: book-api
+    spec:
+      containers:
+        - name: book-api
+          image: your-dockerhub/book-api:latest
+          ports:
+            - containerPort: 8443
+          env:
+            - name: DB_HOST
+              value: 192.168.1.99
+            - name: DB_PORT
+              value: 54321  
+            - name: DB_USER
+              value: az_postgress_user
+            - name: DB_PASS
+              value: NwQsR@404#123
+            - name: DB_NAME
+              value: booksdb

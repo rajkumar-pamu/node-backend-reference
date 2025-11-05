@@ -1,0 +1,167 @@
+{
+  "info": {
+    "name": "Book API Learning Lab",
+    "_postman_id": "b4a23b1a-8d39-4b9a-9465-8b64e92a36e1",
+    "description": "Learn REST & SOAP API concepts: headers, auth, path/query params, and status codes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AUTH - Get JWT Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"password\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REST - Get All Books (with query param)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/books?author=John",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books"],
+          "query": [{ "key": "author", "value": "John" }]
+        }
+      }
+    },
+    {
+      "name": "REST - Get Book by ID (path param)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/books/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "1"]
+        }
+      }
+    },
+    {
+      "name": "REST - Create Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Learn REST\",\n    \"author\": \"John Doe\",\n    \"year\": 2025\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/books",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books"]
+        }
+      }
+    },
+    {
+      "name": "REST - Delete Book",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/books/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "1"]
+        }
+      }
+    },
+    {
+      "name": "SOAP - GetBook",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "text/xml" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:book=\"http://example.com/books\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <book:GetBook>\n         <id>1</id>\n      </book:GetBook>\n   </soapenv:Body>\n</soapenv:Envelope>"
+        },
+        "url": {
+          "raw": "{{base_url}}/soap/bookservice",
+          "host": ["{{base_url}}"],
+          "path": ["soap", "bookservice"]
+        }
+      }
+    },
+    {
+      "name": "SOAP - CreateBook",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "text/xml" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:book=\"http://example.com/books\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <book:CreateBook>\n         <title>SOAP Guide</title>\n         <author>Jane Doe</author>\n         <year>2025</year>\n      </book:CreateBook>\n   </soapenv:Body>\n</soapenv:Envelope>"
+        },
+        "url": {
+          "raw": "{{base_url}}/soap/bookservice",
+          "host": ["{{base_url}}"],
+          "path": ["soap", "bookservice"]
+        }
+      }
+    },
+    {
+      "name": "SOAP - UpdateBook",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "text/xml" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:book=\"http://example.com/books\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <book:UpdateBook>\n         <id>1</id>\n         <title>SOAP Guide Updated</title>\n      </book:UpdateBook>\n   </soapenv:Body>\n</soapenv:Envelope>"
+        },
+        "url": {
+          "raw": "{{base_url}}/soap/bookservice",
+          "host": ["{{base_url}}"],
+          "path": ["soap", "bookservice"]
+        }
+      }
+    },
+    {
+      "name": "SOAP - DeleteBook",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "text/xml" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:book=\"http://example.com/books\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <book:DeleteBook>\n         <id>1</id>\n      </book:DeleteBook>\n   </soapenv:Body>\n</soapenv:Envelope>"
+        },
+        "url": {
+          "raw": "{{base_url}}/soap/bookservice",
+          "host": ["{{base_url}}"],
+          "path": ["soap", "bookservice"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080" },
+    { "key": "jwt_token", "value": "" }
+  ]
+}
