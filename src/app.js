@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 app.use("/api/books", bookRoutes);
 app.use("/api/auth", authRoutes);
 
+app.get("/api/docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
 const PORT = process.env.PORT || 8443;
 
 sequelize.sync().then(() => {
