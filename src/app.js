@@ -34,7 +34,7 @@ sequelize.sync().then(() => {
   const server = http.createServer(app);
 
   // Attach SOAP service to same HTTP server
-  soap.listen(server, "/soap/bookservice", service, xml);
+  soap.listen(server, "/api/soap/bookservice", service, xml);
 
   server.listen(PORT,'0.0.0.0', () => {
     console.log(`🚀 REST + SOAP running at http://localhost:${PORT}`);
