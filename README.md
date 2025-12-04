@@ -330,7 +330,9 @@ After completing this lab, you’ll understand:
 
 ## 🧑‍💻 Author & Credits
 
-Created as a **team learning project** to explore backend API design, security, and deployment.
-Built with ❤️ using Node.js, Express, Sequelize, and SOAP.
+Created as a **team learning project** to explore backend API design, security, and deployment.  
+Built using Node.js, Express, Sequelize, and SOAP.
+
+**Author:** rpamu  
 
 
